@@ -1,0 +1,45 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  PROJECT_ID: wolo-real-estate-bot
+  REGION: us-central1
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [property-catalog, chat-orchestrator, lead-service]
+        
+    steps:
+    - uses: actions/checkout@v4
+
+    - id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Configure Docker
+      run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+
+    - name: Build and Push Docker Image
+      working-directory: ./${{ matrix.service }}
+      run: |
+        IMAGE_NAME="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/wolo/${{ matrix.service }}:${{ github.sha }}"
+        docker build -t $IMAGE_NAME .
+        docker push $IMAGE_NAME
+        
+    - name: Deploy to Cloud Run
+      run: |
+        IMAGE_NAME="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/wolo/${{ matrix.service }}:${{ github.sha }}"
+        gcloud run deploy ${{ matrix.service }}-svc \
+          --image $IMAGE_NAME \
+          --region ${{ env.REGION }} \
+          --project ${{ env.PROJECT_ID }}

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  database:
+    image: ankane/pgvector:latest
+    container_name: wolo-postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: wolo_catalog
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    container_name: wolo-redis
+    ports:
+      - "6379:6379"
+
+  pubsub:
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+    container_name: wolo-pubsub
+    command: gcloud beta emulators pubsub start --host-port=0.0.0.0:8085
+    ports:
+      - "8085:8085"
+
+volumes:
+  db-data:
