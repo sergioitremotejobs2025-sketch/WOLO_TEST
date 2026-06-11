@@ -195,3 +195,4 @@ The development of the WOLO platform is structured into six phases, following a 
 
 For a detailed task-by-task breakdown and to track ongoing tasks, see [TODO.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/TODO.md).
 For the project Gantt chart, weekly schedule, and milestones details, see [timeline.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/timeline.md).
+For GCP monthly cost estimations and budget planning, see [COST.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/COST.md).
