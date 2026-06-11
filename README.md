@@ -8,33 +8,33 @@ This document describes the microservices architecture, technologies, and Test-D
 
 ## 1. System Architecture Overview
 
-The WOLO platform is built as an event-driven microservices application deployed on **Google Cloud Platform (GCP)**. It leverages **Symfony (PHP 8.3+)** for its robust framework capabilities, **GCP Vertex AI** (Gemini 1.5 Flash) for language processing and intent matching, and a variety of serverless GCP components for scalability and resilience.
+The WOLO platform is built as an event-driven microservices application deployed on **Google Cloud Platform (GCP)**. It leverages **Symfony (PHP 8.3+)** for its robust framework capabilities, **GCP Vertex AI** (Gemini 2.5 Flash) for language processing and intent matching, and a variety of serverless GCP components for scalability and resilience.
 
 ### Architecture Diagram
 
 ```mermaid
 graph TD
-    Client[Client App: Web/Mobile] -->|HTTPS/WSS| APIGateway[GCP API Gateway]
+    Client["Client App: Web/Mobile"] -->|HTTPS/WSS| APIGateway["GCP API Gateway"]
     
-    subgraph GCP Cloud Run (Symfony Microservices)
-        APIGateway -->|Route Chat API| ChatOrchestrator[Chat Orchestrator Service]
-        APIGateway -->|Route Property API| PropertyCatalog[Property Catalog Service]
-        APIGateway -->|Route Lead API| LeadService[Lead & Notification Service]
+    subgraph "GCP Cloud Run (Symfony Microservices)"
+        APIGateway -->|Route Chat API| ChatOrchestrator["Chat Orchestrator Service"]
+        APIGateway -->|Route Property API| PropertyCatalog["Property Catalog Service"]
+        APIGateway -->|Route Lead API| LeadService["Lead & Notification Service"]
     end
     
-    subgraph Intelligence Layer
-        ChatOrchestrator -->|SDK / REST| VertexAI[GCP Vertex AI: Gemini 1.5]
+    subgraph "Intelligence Layer"
+        ChatOrchestrator -->|SDK / REST| VertexAI["GCP Vertex AI: Gemini 2.5 Flash"]
     end
     
-    subgraph Data Layer
-        ChatOrchestrator -->|Read/Write Session| Memorystore[GCP Memorystore: Redis]
-        PropertyCatalog -->|SQL Queries| CloudSQL[(Cloud SQL: PostgreSQL)]
+    subgraph "Data Layer"
+        ChatOrchestrator -->|Read/Write Session| Memorystore["GCP Memorystore: Redis"]
+        PropertyCatalog -->|SQL Queries| CloudSQL[("Cloud SQL: PostgreSQL")]
         PropertyCatalog -->|Embeddings Search| CloudSQL
-        LeadService -->|Write Leads| Firestore[(Cloud Firestore)]
+        LeadService -->|Write Leads| Firestore[("Cloud Firestore")]
     end
     
-    subgraph Event Bus
-        ChatOrchestrator -->|Publish lead_captured| PubSub[GCP Pub/Sub]
+    subgraph "Event Bus"
+        ChatOrchestrator -->|Publish lead_captured| PubSub["GCP Pub/Sub"]
         PubSub -->|Subscribe| LeadService
     end
 
@@ -70,7 +70,7 @@ graph TD
 
 ## 3. LLM Integration & Function Calling Flow
 
-The system uses **GCP Vertex AI (Gemini 1.5 Flash)** to process natural language queries. Rather than letting the LLM hallucinate properties, we utilize **Function Calling (Tools)** to interface with our structured APIs.
+The system uses **GCP Vertex AI (Gemini 2.5 Flash)** to process natural language queries. Rather than letting the LLM hallucinate properties, we utilize **Function Calling (Tools)** to interface with our structured APIs.
 
 ### Sequence Flow: Querying Properties
 
