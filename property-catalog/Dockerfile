@@ -24,6 +24,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 COPY . .
 
+# Set production environment
+ENV APP_ENV=prod
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
