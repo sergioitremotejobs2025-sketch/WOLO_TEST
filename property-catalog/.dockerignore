@@ -1,4 +1,5 @@
-/var/
+/var/*
+!/var/data.db
 /vendor/
 /.phpunit.cache/
 .env.local

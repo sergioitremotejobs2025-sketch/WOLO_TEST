@@ -1,8 +1,8 @@
 FROM php:8.4-apache
 
 # Install required extensions
-RUN apt-get update && apt-get install -y libpq-dev git unzip \
-    && docker-php-ext-install pdo pdo_pgsql \
+RUN apt-get update && apt-get install -y libpq-dev libsqlite3-dev git unzip \
+    && docker-php-ext-install pdo pdo_pgsql pdo_sqlite \
     && pecl install redis \
     && docker-php-ext-enable redis
 
@@ -31,7 +31,7 @@ COPY . .
 ENV APP_ENV=prod
 
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --ignore-platform-reqs --no-dev --optimize-autoloader
 
 # Fix permissions
 RUN chown -R www-data:www-data var

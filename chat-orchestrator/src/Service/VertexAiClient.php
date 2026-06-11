@@ -17,7 +17,7 @@ class VertexAiClient
         string $projectId,
         string $region,
         string $token,
-        string $modelName = 'gemini-1.5-flash-001'
+        string $modelName = 'gemini-2.5-flash'
     ) {
         $this->httpClient = $httpClient;
         $this->projectId = $projectId;

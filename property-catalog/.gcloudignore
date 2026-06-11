@@ -1,0 +1,11 @@
+# Keep the database file!
+!var/data.db
+
+# Ignore standard runtime and development files
+.git
+.gitignore
+/vendor/
+/var/cache/
+/var/log/
+/tests/
+/.phpunit.cache/
