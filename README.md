@@ -168,30 +168,34 @@ The microservices are built and running on GCP Cloud Run (project: `iot-microser
 
 ## 6. Project Progress & Status
 
-The development of the WOLO platform is structured into six phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
+The development of the WOLO platform is structured into seven phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
 
 ### Progress Summary
-- **Overall Completion**: `16.6%` (1/6 phases complete)
-- **Current Phase**: Phase 2 (Property Catalog Service Implementation)
+- **Overall Completion**: `85.7%` (6/7 phases complete)
+- **Current Phase**: Phase 7 (Visual Chat Interface Implementation)
 
 | Phase | Description | Status | Completion | Key Deliverables |
 | :--- | :--- | :---: | :---: | :--- |
 | **Phase 1** | Project Setup & Test Infrastructure | 🟢 Complete | 100% | Symfony skeletons, Docker Compose environment, PHPUnit configuration, green baseline environment tests. |
-| **Phase 2** | Property Catalog Service (TDD Implementation) | 🟡 Next | 0% | Property Entity, `pgvector` semantic search, REST API endpoints. |
-| **Phase 3** | Chat Orchestrator Service & Vertex AI Integration | ⚪ Pending | 0% | Chat Session Manager (Redis), Vertex AI client wrapper, function calling, `/api/chat` endpoint. |
-| **Phase 4** | Lead & Notification Service (TDD Implementation) | ⚪ Pending | 0% | Lead capture handler, Pub/Sub consumer, Symfony Mailer notifications. |
-| **Phase 5** | Infrastructure & Deployment Automation | ⚪ Pending | 0% | Terraform infrastructure code for GCP, CI/CD pipeline (GitHub Actions). |
-| **Phase 6** | End-to-End Validation & Release | ⚪ Pending | 0% | E2E system testing, security audits & rate limiting, production deployment. |
+| **Phase 2** | Property Catalog Service (TDD) | 🟢 Complete | 100% | Property Entity, `pgvector` semantic search, REST API endpoints. |
+| **Phase 3** | Chat Orchestrator Service & Vertex AI | 🟢 Complete | 100% | Chat Session Manager (Redis), Vertex AI client wrapper, function calling, `/api/chat` endpoint. |
+| **Phase 4** | Lead & Notification Service (TDD) | 🟢 Complete | 100% | Lead capture handler, Pub/Sub consumer, Symfony Mailer notifications. |
+| **Phase 5** | Infrastructure & Deployment Automation | 🟢 Complete | 100% | Terraform infrastructure code for GCP, CI/CD pipeline (GitHub Actions). |
+| **Phase 6** | End-to-End Validation & Release | 🟢 Complete | 100% | E2E system testing, security audits & rate limiting, production deployment. |
+| **Phase 7** | Visual Chat Interface (Web UI) | 🟡 Next | 0% | Web Chat page (`GET /chat`), interactive property cards, Panthère E2E tests, Cloud Run frontend redeployment. |
 
 ### Completed Milestones
 - **[x] Milestone 1: Scaffold Complete**
   - Initialized three independent Symfony microservices ([chat-orchestrator](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/chat-orchestrator), [lead-service](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/lead-service), and [property-catalog](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/property-catalog)) within a unified repository layout.
   - Configured a local Docker environment with a PostgreSQL database containing `pgvector`, Redis for chat session caching, and the GCP Pub/Sub emulator.
   - Setup local testing suites (PHPUnit) with in-memory SQLite configurations and verified baseline assertions pass green.
+- **[x] Milestone 2-5: Core Functionality & GCP Deployment Complete**
+  - Fully implemented the microservices using TDD, including semantic search, chat session management, and asynchronous lead dispatching.
+  - Successfully deployed all three microservices to live GCP Cloud Run instances (active endpoints documented in Section 5).
 
 ### Next Actions
-1. **Property Entity & Schema (Task 2.1)**: Write tests and implement validation for the `Property` entity.
-2. **pgvector Semantic Search (Task 2.3)**: Implement custom PostgreSQL vector functions in the property catalog.
+1. **Frontend UI styling (Task 7.1)**: Design a clean, premium visual chat interface layout.
+2. **GET /chat Web Controller (Task 7.2)**: Implement the web route in the Chat Orchestrator to render the visual UI.
 
 For a detailed task-by-task breakdown and to track ongoing tasks, see [TODO.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/TODO.md).
 For the project Gantt chart, weekly schedule, and milestones details, see [timeline.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/timeline.md).

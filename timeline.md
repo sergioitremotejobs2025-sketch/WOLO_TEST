@@ -35,10 +35,14 @@ gantt
     Symfony Mailer notifications (4.3)    :done, p4_3, after p4_2, 1d
 
     section Phase 5: GCP Deploy & E2E
-    section Phase 5: GCP Deploy & E2E
     Terraform infra as code (5.1)          :done, p5_1, after p3_3, 3d
     CI/CD workflows & Pipelines (5.2)     :done, p5_2, after p5_1, 2d
     System E2E & Hardening (6.1-6.3)      :done, p5_3, after p4_3, 3d
+
+    section Phase 7: Web Chat UI
+    Design & Assets (7.1)                 : p7_1, after p5_3, 2d
+    Web Routes & Integration (7.2-7.3)    : p7_2, after p7_1, 3d
+    Browser E2E & Release (7.4)           : p7_3, after p7_2, 1d
 ```
 
 ---
@@ -69,7 +73,11 @@ The table below breaks down the tasks by estimated duration in business days (1 
 | **Phase 6** | 6.1 | E2E Integration and system latency profiling | 1 Day | 4.3, 5.2 | ✅ Done |
 | | 6.2 | Security checking (Rate limits, CORS, composer audit) | 1 Day | 6.1 | ✅ Done |
 | | 6.3 | Production deployment & post-deployment smoke tests | 1 Day | 6.2 | ✅ Done |
-| **Total** | | | **29 Days (Parallelized to 20 days)** | | |
+| **Phase 7** | 7.1 | UI/UX Design & CSS/Tailwind Assets | 2 Days | 6.3 | 🟡 Next |
+| | 7.2 | GET /chat web controller & Twig template | 1 Day | 7.1 | ⚪ Pending |
+| | 7.3 | Interactive property cards & lead capture trigger | 2 Days | 7.2 | ⚪ Pending |
+| | 7.4 | Panthère E2E browser tests & production release | 1 Day | 7.3 | ⚪ Pending |
+| **Total** | | | **35 Days (Parallelized to 25 days)** | | |
 
 ---
 
@@ -85,6 +93,8 @@ The table below breaks down the tasks by estimated duration in business days (1 
     *   *Deliverable*: Lead generation process complete. Message flows asynchronously from Chat Orchestrator to Lead Service using Pub/Sub. Terraform code successfully verified.
 5.  **Milestone 5: Production Release (Day 20)**
     *   *Deliverable*: All services deployed to GCP Cloud Run. CI/CD pipelines automate testing and deployment. Public API Gateway configured, secure, and ready for client usage.
+6.  **Milestone 6: Web Chat Interface Live (Day 25)**
+    *   *Deliverable*: User-facing chat interface live at the `/chat` URL. Displays interactive property catalog cards directly inside the conversation flow, with functional lead registration buttons.
 
 ---
 
