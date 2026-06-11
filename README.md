@@ -210,6 +210,40 @@ The development of the WOLO platform is structured into nine phases, following a
   - Added a glassmorphic "+ Add Property" modal creation form to `/properties`, enabling asynchronous posting, validation error displays, and instant catalog listing updates.
 
 
+---
+
+## 7. Walkthroughs & Bug Resolution Details
+
+This section contains the detailed walkthrough of the changes, achievements, and bug fixes implemented during the final phases of WOLO.
+
+### 7.1. Phase 7: Visual Chat Interface Implementation
+*   **Frontend Visual Chat UI**: Implemented `GET /chat` inside the [ChatController](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/chat-orchestrator/src/Controller/ChatController.php) of `chat-orchestrator`. Designed a sleek dark-mode glassmorphic Twig view ([index.html.twig](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/chat-orchestrator/templates/chat/index.html.twig)) with bouncing-dot loading indicator, interactive property cards, and a "Register Interest" contact form modal.
+*   **Lead Capture API**: Created [LeadController](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/lead-service/src/Controller/LeadController.php) inside `lead-service` exposing `POST /api/leads` with strict validation rules and CORS support.
+*   **Routing & Apache Configuration**: Added `FallbackResource /index.php` directives inside all service [Dockerfiles](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/chat-orchestrator/Dockerfile) to resolve routing 404 errors in Cloud Run.
+
+### 7.2. Production Bug Fixes & Resolution Details
+*   **Vertex AI 401 Unauthorized**: Corrected the Google Metadata Server endpoint URL in PHP (fixed the `service-account` to `service-accounts` typo) and requested the necessary `cloud-platform` scope.
+*   **Vertex AI API 403 / 404**: Enabled the Vertex AI API (`aiplatform.googleapis.com`) in the GCP project `iot-microservices-gcp` and upgraded the LLM model from the retired `gemini-1.5-flash-001` to the active stable `gemini-2.5-flash`.
+*   **Property Catalog 500 Server Error**: Adjusted the `property-catalog` database configuration to point to SQLite `var/data.db` in production (matching local environment since no Cloud SQL instance is provisioned), enabled `pdo_sqlite` in the Dockerfile, and excluded `var/data.db` from `.gcloudignore` and `.dockerignore` to bundle seed data.
+
+### 7.3. Phase 8: Browse Properties Interface
+*   **Properties Browser**: Added `GET /properties` to render `browse.html.twig` with Outfitters and Inter typography.
+*   **Dynamic Client-side Filtering**: Integrated vanilla JS debounced listeners to query the `/api/properties` catalog REST API asynchronously and update the listings grid instantly.
+*   **Details Modal**: Added an overlay detail view for properties with a prefilled CTA link to query the WOLO Chatbot.
+
+### 7.4. Phase 9: Add New Properties
+*   **REST API Endpoint**: Created a `POST /api/properties` endpoint in `PropertyController` to validate inputs and persist properties to SQLite.
+*   **Form UI**: Added an "+ Add Property" modal form to the properties page header that posts data asynchronously and renders validation errors dynamically.
+
+### 7.5. GCS Database Synchronization Bug Fix
+*   **The Issue**: Newly added properties were not available in the AI chatbot. Since Cloud Run container instances are stateless, local SQLite updates were not shared across different instances.
+*   **The Resolution**: Integrated automatic database synchronization with Google Cloud Storage in the `property-catalog` service ([PropertyController.php](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/property-catalog/src/Controller/PropertyController.php)):
+    *   `syncFromGcs()`: Downloads the latest `data.db` from GCS (`gs://iot-microservices-gcp-source-bucket/data.db`) prior to handling any search, browse, or creation requests.
+    *   `syncToGcs()`: Uploads the updated SQLite database to GCS immediately after a new property is created.
+*   **Deployment & Verification**: The updated service was deployed to Cloud Run. A test property added via the frontend modal was verified to successfully sync to GCS and retrieve immediately in the chatbot interface when queried.
+
+---
+
 For a detailed task-by-task breakdown and to track ongoing tasks, see [TODO.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/TODO.md).
 For the project Gantt chart, weekly schedule, and milestones details, see [timeline.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/timeline.md).
 For GCP monthly cost estimations and budget planning, see [COST.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/COST.md).
