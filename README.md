@@ -158,6 +158,12 @@ To maintain high availability and seamless scalability, the microservices are de
     5.  **Artifact Registry**: Push Docker images to GCP Artifact Registry.
     6.  **Cloud Run Deployment**: Deploy to GCP Cloud Run with traffic splitting (canary releases).
 
+### Active Cloud Run Deployments
+The microservices are built and running on GCP Cloud Run (project: `iot-microservices-gcp` / region: `europe-west1`):
+*   **Property Catalog Service**: [property-catalog-aevnltclea-ew.a.run.app](https://property-catalog-aevnltclea-ew.a.run.app)
+*   **Chat Orchestrator Service**: [chat-orchestrator-aevnltclea-ew.a.run.app](https://chat-orchestrator-aevnltclea-ew.a.run.app)
+*   **Lead & Notification Service**: [lead-service-aevnltclea-ew.a.run.app](https://lead-service-aevnltclea-ew.a.run.app)
+
 ---
 
 ## 6. Project Progress & Status
