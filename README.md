@@ -168,11 +168,11 @@ The microservices are built and running on GCP Cloud Run (project: `iot-microser
 
 ## 6. Project Progress & Status
 
-The development of the WOLO platform is structured into seven phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
+The development of the WOLO platform is structured into eight phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
 
 ### Progress Summary
-- **Overall Completion**: `100%` (7/7 phases complete)
-- **Current Phase**: All Phases Complete 🎉
+- **Overall Completion**: `87.5%` (7/8 phases complete)
+- **Current Phase**: Phase 8: Browse Properties Interface 🚀
 
 | Phase | Description | Status | Completion | Key Deliverables |
 | :--- | :--- | :---: | :---: | :--- |
@@ -183,6 +183,8 @@ The development of the WOLO platform is structured into seven phases, following 
 | **Phase 5** | Infrastructure & Deployment Automation | 🟢 Complete | 100% | Terraform infrastructure code for GCP, CI/CD pipeline (GitHub Actions). |
 | **Phase 6** | End-to-End Validation & Release | 🟢 Complete | 100% | E2E system testing, security audits & rate limiting, production deployment. |
 | **Phase 7** | Visual Chat Interface (Web UI) | 🟢 Complete | 100% | Web Chat page (`GET /chat`), interactive property cards, Panthère E2E tests, Cloud Run frontend redeployment. |
+| **Phase 8** | Browse Properties Interface | 🟡 In Progress | 0% | Property browse page (`GET /properties`), responsive filtering UI, dynamic async results loading, and detail view modals. |
+
 
 ### Completed Milestones
 - **[x] Milestone 1: Scaffold Complete**
