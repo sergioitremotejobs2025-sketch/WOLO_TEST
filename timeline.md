@@ -40,9 +40,9 @@ gantt
     System E2E & Hardening (6.1-6.3)      :done, p5_3, after p4_3, 3d
 
     section Phase 7: Web Chat UI
-    Design & Assets (7.1)                 : p7_1, after p5_3, 2d
-    Web Routes & Integration (7.2-7.3)    : p7_2, after p7_1, 3d
-    Browser E2E & Release (7.4)           : p7_3, after p7_2, 1d
+    Design & Assets (7.1)                 :done, p7_1, after p5_3, 2d
+    Web Routes & Integration (7.2-7.3)    :done, p7_2, after p7_1, 3d
+    Browser E2E & Release (7.4)           :done, p7_3, after p7_2, 1d
 ```
 
 ---
@@ -73,10 +73,10 @@ The table below breaks down the tasks by estimated duration in business days (1 
 | **Phase 6** | 6.1 | E2E Integration and system latency profiling | 1 Day | 4.3, 5.2 | ✅ Done |
 | | 6.2 | Security checking (Rate limits, CORS, composer audit) | 1 Day | 6.1 | ✅ Done |
 | | 6.3 | Production deployment & post-deployment smoke tests | 1 Day | 6.2 | ✅ Done |
-| **Phase 7** | 7.1 | UI/UX Design & CSS/Tailwind Assets | 2 Days | 6.3 | 🟡 Next |
-| | 7.2 | GET /chat web controller & Twig template | 1 Day | 7.1 | ⚪ Pending |
-| | 7.3 | Interactive property cards & lead capture trigger | 2 Days | 7.2 | ⚪ Pending |
-| | 7.4 | Panthère E2E browser tests & production release | 1 Day | 7.3 | ⚪ Pending |
+| **Phase 7** | 7.1 | UI/UX Design & CSS/Tailwind Assets | 2 Days | 6.3 | ✅ Done |
+| | 7.2 | GET /chat web controller & Twig template | 1 Day | 7.1 | ✅ Done |
+| | 7.3 | Interactive property cards & lead capture trigger | 2 Days | 7.2 | ✅ Done |
+| | 7.4 | Panthère E2E browser tests & production release | 1 Day | 7.3 | ✅ Done |
 | **Total** | | | **35 Days (Parallelized to 25 days)** | | |
 
 ---

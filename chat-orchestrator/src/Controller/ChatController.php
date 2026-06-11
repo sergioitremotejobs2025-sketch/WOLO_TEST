@@ -8,6 +8,7 @@ use App\Service\VertexAiClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ChatController extends AbstractController
@@ -35,6 +36,14 @@ class ChatController extends AbstractController
             'endpoints' => [
                 'POST /api/chat' => 'Interact with the chatbot'
             ]
+        ]);
+    }
+
+    #[Route('/chat', name: 'chat_web', methods: ['GET'])]
+    public function chatWeb(): Response
+    {
+        return $this->render('chat/index.html.twig', [
+            'leadServiceUrl' => $_ENV['LEAD_SERVICE_URL'] ?? 'https://lead-service-aevnltclea-ew.a.run.app'
         ]);
     }
 
@@ -81,12 +90,14 @@ class ChatController extends AbstractController
             }
 
             $part = $candidate['content']['parts'][0] ?? null;
+            $properties = null;
 
             if (isset($part['functionCall'])) {
                 $funcName = $part['functionCall']['name'];
                 $args = $part['functionCall']['args'] ?? [];
                 
                 $toolResult = $this->toolDispatcher->dispatch($funcName, $args);
+                $properties = $toolResult;
                 
                 $modelPayload = ['role' => 'model', 'parts' => [$part]];
                 $this->sessionManager->addMessage($sessionId, $modelPayload);
@@ -113,7 +124,10 @@ class ChatController extends AbstractController
                 $modelPayload = ['role' => 'model', 'parts' => [['text' => $part['text']]]];
                 $this->sessionManager->addMessage($sessionId, $modelPayload);
                 
-                return $this->json(['response' => $part['text']]);
+                return $this->json([
+                    'response' => $part['text'],
+                    'properties' => $properties
+                ]);
             }
 
             return $this->json(['error' => 'Unexpected response format'], 500);

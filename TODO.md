@@ -134,19 +134,19 @@ This document tracks the tasks required to build the WOLO Real Estate Chatbot us
 
 ## Phase 7: Visual Chat Interface (Web UI)
 
-- [ ] **7.1. Frontend Design & UX (Tailwind/CSS)**
-  - [ ] 7.1.1. Design a clean, premium, and responsive chat UI component (matching modern aesthetics, dark mode support).
-  - [ ] 7.1.2. Setup CSS tokens, custom avatars, and message bubbles with loading placeholders.
+- [x] **7.1. Frontend Design & UX (Tailwind/CSS)**
+  - [x] 7.1.1. Design a clean, premium, and responsive chat UI component (matching modern aesthetics, dark mode support).
+  - [x] 7.1.2. Setup CSS tokens, custom avatars, and message bubbles with loading placeholders.
 
-- [ ] **7.2. Web Chat Controller & View (Symfony/Twig)**
-  - [ ] 7.2.1. Implement a web route (`GET /chat`) in the Chat Orchestrator service to render the Twig template.
-  - [ ] 7.2.2. Create standard Symfony Form or JS fetch controller to send inputs to `/api/chat` and update the message list.
-  - [ ] 7.2.3. Integrate markdown parsing for formatting chatbot responses (lists, bolding, links).
+- [x] **7.2. Web Chat Controller & View (Symfony/Twig)**
+  - [x] 7.2.1. Implement a web route (`GET /chat`) in the Chat Orchestrator service to render the Twig template.
+  - [x] 7.2.2. Create standard Symfony Form or JS fetch controller to send inputs to `/api/chat` and update the message list.
+  - [x] 7.2.3. Integrate markdown parsing for formatting chatbot responses (lists, bolding, links).
 
-- [ ] **7.3. Interactive Property Cards**
-  - [ ] 7.3.1. Design interactive visual cards for displaying property catalog items inside the chat transcript.
-  - [ ] 7.3.2. Implement "Register Interest" CTA buttons on cards, calling the Lead & Notification service API.
+- [x] **7.3. Interactive Property Cards**
+  - [x] 7.3.1. Design interactive visual cards for displaying property catalog items inside the chat transcript.
+  - [x] 7.3.2. Implement "Register Interest" CTA buttons on cards, calling the Lead & Notification service API.
 
-- [ ] **7.4. UI Testing & Release**
-  - [ ] 7.4.1. Write E2E browser tests (Symfony Panthère / Cypress) asserting message dispatching and UI updates.
-  - [ ] 7.4.2. Redeploy Chat Orchestrator with the frontend enabled and run visual verification.
+- [x] **7.4. UI Testing & Release**
+  - [x] 7.4.1. Write E2E browser tests (Symfony Panthère / Cypress) asserting message dispatching and UI updates.
+  - [x] 7.4.2. Redeploy Chat Orchestrator with the frontend enabled and run visual verification.
