@@ -155,21 +155,22 @@ This document tracks the tasks required to build the WOLO Real Estate Chatbot us
 
 ## Phase 8: Browse Properties Interface
 
-- [ ] **8.1. TDD: Property Browse Page Test (Symfony/Twig)**
-  - [ ] 8.1.1. Create a `PropertyWebControllerTest` WebTestCase asserting that `GET /properties` returns status `200 OK` and contains key elements like filters (city, type, price_max) and property grid.
-  - [ ] 8.1.2. Assert that dynamic filters correctly query the underlying database or mock results.
+- [x] **8.1. TDD: Property Browse Page Test (Symfony/Twig)**
+  - [x] 8.1.1. Create a `PropertyWebControllerTest` WebTestCase asserting that `GET /properties` returns status `200 OK` and contains key elements like filters (city, type, price_max) and property grid.
+  - [x] 8.1.2. Assert that dynamic filters correctly query the underlying database or mock results.
 
-- [ ] **8.2. Properties Browser Controller & View**
-  - [ ] 8.2.1. Implement `browse()` in `PropertyController` to handle `GET /properties` and render a Twig template.
-  - [ ] 8.2.2. Design a premium, dark-mode glassmorphic Twig template (`browse.html.twig`) with custom Google Fonts (Outfit).
-  - [ ] 8.2.3. Implement the property grid rendering, displaying title, price, location, type, and bedrooms.
+- [x] **8.2. Properties Browser Controller & View**
+  - [x] 8.2.1. Implement `browse()` in `PropertyController` to handle `GET /properties` and render a Twig template.
+  - [x] 8.2.2. Design a premium, dark-mode glassmorphic Twig template (`browse.html.twig`) with custom Google Fonts (Outfit).
+  - [x] 8.2.3. Implement the property grid rendering, displaying title, price, location, type, and bedrooms.
 
-- [ ] **8.3. Dynamic Frontend Filtering & Interactivity**
-  - [ ] 8.3.1. Add vanilla JavaScript logic to intercept filter changes (city, type, max price) and perform asynchronous fetch calls to `/api/properties`.
-  - [ ] 8.3.2. Implement transitions and hover animations on the property cards to create a fluid, responsive interface.
-  - [ ] 8.3.3. Add a detail view popup modal for property cards to show expanded details and CTA to start a chat with the WOLO assistant.
+- [x] **8.3. Dynamic Frontend Filtering & Interactivity**
+  - [x] 8.3.1. Add vanilla JavaScript logic to intercept filter changes (city, type, max price) and perform asynchronous fetch calls to `/api/properties`.
+  - [x] 8.3.2. Implement transitions and hover animations on the property cards to create a fluid, responsive interface.
+  - [x] 8.3.3. Add a detail view popup modal for property cards to show expanded details and CTA to start a chat with the WOLO assistant.
 
-- [ ] **8.4. Testing & Cloud Run Deployment**
-  - [ ] 8.4.1. Run all unit and WebTestCase suites to verify green status in the local environment.
-  - [ ] 8.4.2. Redeploy the updated `property-catalog` service to GCP Cloud Run and perform manual E2E validation.
+- [x] **8.4. Testing & Cloud Run Deployment**
+  - [x] 8.4.1. Run all unit and WebTestCase suites to verify green status in the local environment.
+  - [x] 8.4.2. Redeploy the updated `property-catalog` service to GCP Cloud Run and perform manual E2E validation.
+
 

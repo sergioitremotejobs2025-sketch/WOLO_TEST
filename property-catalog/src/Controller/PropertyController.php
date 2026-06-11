@@ -6,10 +6,21 @@ use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class PropertyController extends AbstractController
 {
+    #[Route('/properties', name: 'properties_browse', methods: ['GET'])]
+    public function browse(PropertyRepository $repository): Response
+    {
+        $properties = $repository->findAll();
+
+        return $this->render('property/browse.html.twig', [
+            'properties' => $properties,
+        ]);
+    }
+
     #[Route('/', name: 'home', methods: ['GET'])]
     public function index(): JsonResponse
     {
