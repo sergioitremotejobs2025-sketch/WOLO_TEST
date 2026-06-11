@@ -173,4 +173,28 @@ This document tracks the tasks required to build the WOLO Real Estate Chatbot us
   - [x] 8.4.1. Run all unit and WebTestCase suites to verify green status in the local environment.
   - [x] 8.4.2. Redeploy the updated `property-catalog` service to GCP Cloud Run and perform manual E2E validation.
 
+---
+
+## Phase 9: Add New Properties
+
+- [x] **9.1. TDD: Property Creation API Test (Symfony/PHPUnit)**
+  - [x] 9.1.1. Create a `PropertyCreateTest` WebTestCase asserting that `POST /api/properties` with valid data saves the property and returns a `201 Created` status with the serialized property details.
+  - [x] 9.1.2. Assert that `POST /api/properties` with invalid data returns `400 Bad Request` and detailed validation error messages.
+
+- [x] **9.2. Properties Creation API Endpoint**
+  - [x] 9.2.1. Implement the `create()` method in `PropertyController` to handle `POST /api/properties`.
+  - [x] 9.2.2. Validate input constraints using Symfony's `ValidatorInterface` and persist properties using the entity manager.
+  - [x] 9.2.3. Enable CORS support if cross-origin requests are expected.
+
+- [x] **9.3. Properties Browser Creation Form UI**
+  - [x] 9.3.1. Modify `browse.html.twig` to add a "+ Add Property" button in the header.
+  - [x] 9.3.2. Implement a glassmorphic modal form for adding properties with validation fields.
+  - [x] 9.3.3. Add JS logic to post data to `/api/properties` using `fetch` and update the property list dynamically.
+
+- [x] **9.4. Testing & Cloud Run Deployment**
+  - [x] 9.4.1. Run all unit and WebTestCase suites to verify green status in the local environment.
+  - [x] 9.4.2. Redeploy the updated `property-catalog` service to GCP Cloud Run and perform manual E2E validation.
+
+
+
 

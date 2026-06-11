@@ -49,7 +49,10 @@
                     </div>
                 </a>
             </div>
-            <div>
+            <div class="flex items-center space-x-3">
+                <button onclick="openCreateModal()" class="text-xs font-semibold bg-violet-600 hover:bg-violet-500 text-white px-4 py-2 rounded-xl transition duration-200 shadow-md">
+                    + Add Property
+                </button>
                 <a href="https://chat-orchestrator-aevnltclea-ew.a.run.app/chat" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/30 hover:border-indigo-500 text-indigo-300 hover:text-white px-4 py-2 rounded-xl transition duration-200 shadow-md">
                     💬 Chat with Assistant
                 </a>
@@ -170,6 +173,70 @@
                 <a id="modal-chat-cta" href="https://chat-orchestrator-aevnltclea-ew.a.run.app/chat" class="flex-1 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-semibold py-3.5 rounded-xl transition duration-200 text-center shadow-lg shadow-indigo-600/10">
                     Ask WOLO Assistant
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Property Modal Overlay -->
+    <div id="create-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl w-full max-w-lg mx-4 shadow-2xl relative transform scale-95 transition-transform duration-300">
+            <!-- Close Button -->
+            <button onclick="closeCreateModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-200 transition">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <h3 class="text-xl font-bold text-slate-100 mb-2 font-heading">Add New Property</h3>
+            <p class="text-xs text-slate-400 mb-4">Fill in the details below to add a property listing to the catalog.</p>
+            
+            <form id="create-form" class="space-y-4">
+                <div id="create-errors" class="hidden text-xs bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-xl">
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1" for="create-title">Property Title</label>
+                    <input type="text" id="create-title" required placeholder="e.g. Modern Apartment in Eixample" class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-slate-100 text-sm px-3.5 py-2.5 rounded-xl outline-none transition duration-200">
+                </div>
+                
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1" for="create-location">City / Location</label>
+                    <input type="text" id="create-location" required placeholder="e.g. Barcelona" class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-slate-100 text-sm px-3.5 py-2.5 rounded-xl outline-none transition duration-200">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1" for="create-type">Listing Type</label>
+                        <select id="create-type" required class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-slate-100 text-sm px-3.5 py-2.5 rounded-xl outline-none transition duration-200">
+                            <option value="rent">To Rent</option>
+                            <option value="buy">To Buy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1" for="create-price">Price (€)</label>
+                        <input type="number" id="create-price" required placeholder="1200" class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-slate-100 text-sm px-3.5 py-2.5 rounded-xl outline-none transition duration-200">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1" for="create-bedrooms">Bedrooms</label>
+                        <input type="number" id="create-bedrooms" required placeholder="2" class="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500 text-slate-100 text-sm px-3.5 py-2.5 rounded-xl outline-none transition duration-200">
+                    </div>
+                </div>
+
+                <div class="pt-4 flex gap-4">
+                    <button type="button" onclick="closeCreateModal()" class="flex-1 bg-slate-950/60 hover:bg-slate-900 border border-slate-800 text-slate-300 text-sm font-semibold py-3 rounded-xl transition duration-200">
+                        Cancel
+                    </button>
+                    <button type="submit" id="btn-submit-create" class="flex-1 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-semibold py-3 rounded-xl transition duration-200 shadow-lg shadow-indigo-600/10">
+                        Save Property
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Overlay inside modal -->
+            <div id="create-success" class="absolute inset-0 bg-slate-900 rounded-2xl flex flex-col items-center justify-center hidden">
+                <div class="h-14 w-14 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-3">
+                    <svg class="h-8 w-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h4 class="text-md font-bold text-slate-100">Property Added!</h4>
+                <p class="text-xs text-slate-400 mt-1">Listing has been successfully added.</p>
             </div>
         </div>
     </div>
@@ -324,6 +391,84 @@
                 modal.classList.add('hidden');
             }, 300);
         }
+
+        // Create Modal Logic
+        const createModal = document.getElementById('create-modal');
+        const createModalInner = createModal.querySelector('.transform');
+        const createForm = document.getElementById('create-form');
+        const createErrors = document.getElementById('create-errors');
+        const createSuccess = document.getElementById('create-success');
+
+        function openCreateModal() {
+            createModal.classList.remove('hidden');
+            setTimeout(() => {
+                createModal.classList.remove('opacity-0');
+                createModalInner.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeCreateModal() {
+            createModal.classList.add('opacity-0');
+            createModalInner.classList.add('scale-95');
+            setTimeout(() => {
+                createModal.classList.add('hidden');
+                createSuccess.classList.add('hidden');
+                createErrors.classList.add('hidden');
+                createForm.reset();
+            }, 300);
+        }
+
+        createForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            createErrors.classList.add('hidden');
+            createErrors.innerHTML = '';
+
+            const title = document.getElementById('create-title').value.trim();
+            const location = document.getElementById('create-location').value.trim();
+            const type = document.getElementById('create-type').value;
+            const price = parseFloat(document.getElementById('create-price').value);
+            const bedrooms = parseInt(document.getElementById('create-bedrooms').value);
+
+            const submitBtn = document.getElementById('btn-submit-create');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            try {
+                const response = await fetch('/api/properties', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, location, type, price, bedrooms })
+                });
+
+                if (response.ok) {
+                    createSuccess.classList.remove('hidden');
+                    // Refresh listing grid
+                    await fetchFilteredProperties();
+                    setTimeout(() => {
+                        closeCreateModal();
+                    }, 1500);
+                } else {
+                    const errData = await response.json();
+                    let errMsg = '<strong>Please correct the following errors:</strong><ul class="list-disc pl-4 mt-1">';
+                    if (errData.errors) {
+                        for (const field in errData.errors) {
+                            errMsg += `<li>${escapeHtml(errData.errors[field])}</li>`;
+                        }
+                    } else {
+                        errMsg += `<li>${escapeHtml(errData.error || 'Unknown error occurred')}</li>`;
+                    }
+                    errMsg += '</ul>';
+                    createErrors.innerHTML = errMsg;
+                    createErrors.classList.remove('hidden');
+                }
+            } catch (err) {
+                createErrors.innerHTML = 'Connection to Property Service failed. Please try again.';
+                createErrors.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Property';
+            }
+        });
 
         function escapeHtml(str) {
             if (typeof str !== 'string') return '';

@@ -168,10 +168,10 @@ The microservices are built and running on GCP Cloud Run (project: `iot-microser
 
 ## 6. Project Progress & Status
 
-The development of the WOLO platform is structured into eight phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
+The development of the WOLO platform is structured into nine phases, following a strict Test-Driven Development (TDD) cycle. Below is the current progress of each phase:
 
 ### Progress Summary
-- **Overall Completion**: `100%` (8/8 phases complete)
+- **Overall Completion**: `100%` (9/9 phases complete)
 - **Current Phase**: All Phases Complete 🎉
 
 | Phase | Description | Status | Completion | Key Deliverables |
@@ -184,6 +184,9 @@ The development of the WOLO platform is structured into eight phases, following 
 | **Phase 6** | End-to-End Validation & Release | 🟢 Complete | 100% | E2E system testing, security audits & rate limiting, production deployment. |
 | **Phase 7** | Visual Chat Interface (Web UI) | 🟢 Complete | 100% | Web Chat page (`GET /chat`), interactive property cards, Panthère E2E tests, Cloud Run frontend redeployment. |
 | **Phase 8** | Browse Properties Interface | 🟢 Complete | 100% | Property browse page (`GET /properties`), responsive filtering UI, dynamic async results loading, and detail view modals. |
+| **Phase 9** | Add New Properties | 🟢 Complete | 100% | REST API endpoint (`POST /api/properties`), validation error handling, dynamic creation modal form, and E2E creation tests. |
+
+
 
 
 ### Completed Milestones
@@ -202,6 +205,10 @@ The development of the WOLO platform is structured into eight phases, following 
   - Developed and launched a premium, responsive property catalog browser served at `/properties` directly by the `property-catalog` microservice.
   - Implemented dynamic async filtering (city/location, buy/rent, max price) using vanilla JavaScript fetching from `/api/properties`.
   - Added interactive property details modals featuring a call-to-action linking to the WOLO Chat Assistant with prefilled context.
+- **[x] Milestone 8: Property Creation API & Web UI Complete**
+  - Designed and implemented the REST API endpoint `POST /api/properties` complete with input validation and persistence testing.
+  - Added a glassmorphic "+ Add Property" modal creation form to `/properties`, enabling asynchronous posting, validation error displays, and instant catalog listing updates.
+
 
 For a detailed task-by-task breakdown and to track ongoing tasks, see [TODO.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/TODO.md).
 For the project Gantt chart, weekly schedule, and milestones details, see [timeline.md](file:///Users/sergioabad/Desktop/ProjectsToWorkOn/WOLO/timeline.md).
