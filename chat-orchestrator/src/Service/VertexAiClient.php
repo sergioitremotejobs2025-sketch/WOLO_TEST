@@ -28,10 +28,13 @@ class VertexAiClient
 
     public function generateContent(array $messages, array $tools = []): array
     {
+        $projectId = $this->getProjectId();
+        $accessToken = $this->getAccessToken();
+
         $url = sprintf(
             'https://%s-aiplatform.googleapis.com/v1/projects/%s/locations/%s/publishers/google/models/%s:generateContent',
             $this->region,
-            $this->projectId,
+            $projectId,
             $this->region,
             $this->modelName
         );
@@ -46,12 +49,51 @@ class VertexAiClient
 
         $response = $this->httpClient->request('POST', $url, [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->token,
+                'Authorization' => 'Bearer ' . $accessToken,
                 'Content-Type' => 'application/json',
             ],
             'json' => $payload,
         ]);
 
         return $response->toArray();
+    }
+
+    private function getAccessToken(): string
+    {
+        if ($this->token !== 'dummy-token' && !empty($this->token)) {
+            return $this->token;
+        }
+
+        try {
+            $response = $this->httpClient->request('GET', 'http://metadata.google.internal/computeMetadata/v1/instance/service-account/default/token', [
+                'headers' => [
+                    'Metadata-Flavor' => 'Google'
+                ],
+                'timeout' => 2.0
+            ]);
+            $data = $response->toArray();
+            return $data['access_token'] ?? '';
+        } catch (\Exception $e) {
+            return $this->token;
+        }
+    }
+
+    private function getProjectId(): string
+    {
+        if ($this->projectId !== 'dummy-project' && !empty($this->projectId)) {
+            return $this->projectId;
+        }
+
+        try {
+            $response = $this->httpClient->request('GET', 'http://metadata.google.internal/computeMetadata/v1/project/project-id', [
+                'headers' => [
+                    'Metadata-Flavor' => 'Google'
+                ],
+                'timeout' => 2.0
+            ]);
+            return trim($response->getContent());
+        } catch (\Exception $e) {
+            return $this->projectId;
+        }
     }
 }
