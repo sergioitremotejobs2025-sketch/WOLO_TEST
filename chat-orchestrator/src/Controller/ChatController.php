@@ -26,6 +26,18 @@ class ChatController extends AbstractController
         $this->toolDispatcher = $toolDispatcher;
     }
 
+    #[Route('/', name: 'home', methods: ['GET'])]
+    public function index(): JsonResponse
+    {
+        return $this->json([
+            'status' => 'OK',
+            'service' => 'Chat Orchestrator Service',
+            'endpoints' => [
+                'POST /api/chat' => 'Interact with the chatbot'
+            ]
+        ]);
+    }
+
     #[Route('/api/chat', name: 'api_chat', methods: ['POST'])]
     public function chat(Request $request): JsonResponse
     {

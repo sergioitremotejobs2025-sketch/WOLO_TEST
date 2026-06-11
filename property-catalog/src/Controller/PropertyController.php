@@ -10,6 +10,18 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PropertyController extends AbstractController
 {
+    #[Route('/', name: 'home', methods: ['GET'])]
+    public function index(): JsonResponse
+    {
+        return $this->json([
+            'status' => 'OK',
+            'service' => 'Property Catalog Service',
+            'endpoints' => [
+                'GET /api/properties' => 'Search properties'
+            ]
+        ]);
+    }
+
     #[Route('/api/properties', name: 'api_properties_search', methods: ['GET'])]
     public function search(Request $request, PropertyRepository $repository): JsonResponse
     {
