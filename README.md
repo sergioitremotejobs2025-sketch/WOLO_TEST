@@ -158,11 +158,14 @@ To maintain high availability and seamless scalability, the microservices are de
     5.  **Artifact Registry**: Push Docker images to GCP Artifact Registry.
     6.  **Cloud Run Deployment**: Deploy to GCP Cloud Run with traffic splitting (canary releases).
 
-### Active Cloud Run Deployments
-The microservices are built and running on GCP Cloud Run (project: `iot-microservices-gcp` / region: `europe-west1`):
-*   **Property Catalog Service**: [property-catalog-aevnltclea-ew.a.run.app](https://property-catalog-aevnltclea-ew.a.run.app)
-*   **Chat Orchestrator Service**: [chat-orchestrator-aevnltclea-ew.a.run.app](https://chat-orchestrator-aevnltclea-ew.a.run.app)
-*   **Lead & Notification Service**: [lead-service-aevnltclea-ew.a.run.app](https://lead-service-aevnltclea-ew.a.run.app)
+### Active Cloud Run Deployments & Web Interfaces
+The microservices are built and running on GCP Cloud Run (project: `iot-microservices-gcp` / region: `europe-west1`). You can access the live web interfaces here:
+*   💬 **AI Chat Assistant (Chat Orchestrator)**: [chat-orchestrator-aevnltclea-ew.a.run.app/chat](https://chat-orchestrator-aevnltclea-ew.a.run.app/chat)
+*   🏠 **Browse Properties Page (Property Catalog)**: [property-catalog-aevnltclea-ew.a.run.app/properties](https://property-catalog-aevnltclea-ew.a.run.app/properties)
+
+Additionally, the base APIs can be accessed at:
+*   **Property Catalog API**: [property-catalog-aevnltclea-ew.a.run.app/api/properties](https://property-catalog-aevnltclea-ew.a.run.app/api/properties)
+*   **Lead & Notification Service API**: [lead-service-aevnltclea-ew.a.run.app](https://lead-service-aevnltclea-ew.a.run.app)
 
 ---
 
