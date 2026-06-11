@@ -65,7 +65,7 @@ class VertexAiClient
         }
 
         try {
-            $response = $this->httpClient->request('GET', 'http://metadata.google.internal/computeMetadata/v1/instance/service-account/default/token', [
+            $response = $this->httpClient->request('GET', 'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token?scopes=https://www.googleapis.com/auth/cloud-platform', [
                 'headers' => [
                     'Metadata-Flavor' => 'Google'
                 ],
@@ -74,6 +74,7 @@ class VertexAiClient
             $data = $response->toArray();
             return $data['access_token'] ?? '';
         } catch (\Exception $e) {
+            error_log('WOLO VertexAiClient Token Error: ' . $e->getMessage() . ' | Trace: ' . $e->getTraceAsString());
             return $this->token;
         }
     }
@@ -93,6 +94,7 @@ class VertexAiClient
             ]);
             return trim($response->getContent());
         } catch (\Exception $e) {
+            error_log('WOLO VertexAiClient Project ID Error: ' . $e->getMessage());
             return $this->projectId;
         }
     }
