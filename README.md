@@ -5,6 +5,11 @@
 This document describes the microservices architecture, technologies, and Test-Driven Development (TDD) strategy for **WOLO**, an AI-powered conversational agent that helps users find properties to rent or buy.
 
 ---
+## Public Service URLs
+The following microservices are deployed on Google Cloud Run (Europe-West1):
+* **Chat Orchestrator**: [https://chat-orchestrator-913260502724.europe-west1.run.app](https://chat-orchestrator-913260502724.europe-west1.run.app)
+* **Lead Service**: [https://lead-service-913260502724.europe-west1.run.app](https://lead-service-913260502724.europe-west1.run.app)
+* **Property Catalog**: [https://property-catalog-913260502724.europe-west1.run.app](https://property-catalog-913260502724.europe-west1.run.app)
 
 ## 1. System Architecture Overview
 
