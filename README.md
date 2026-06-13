@@ -11,6 +11,7 @@ The following microservices are deployed on Google Cloud Run (Europe-West1):
 * **Lead Service**: [https://lead-service-913260502724.europe-west1.run.app](https://lead-service-913260502724.europe-west1.run.app)
 * **Property Catalog**: [https://property-catalog-913260502724.europe-west1.run.app](https://property-catalog-913260502724.europe-west1.run.app)
 * **Browse Properties UI**: [https://property-catalog-913260502724.europe-west1.run.app/properties](https://property-catalog-913260502724.europe-west1.run.app/properties)
+* **Chat Assistant UI**: [https://chat-orchestrator-aevnltclea-ew.a.run.app/chat](https://chat-orchestrator-aevnltclea-ew.a.run.app/chat)
 
 ## 1. System Architecture Overview
 
